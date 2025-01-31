@@ -34,20 +34,20 @@ module tut3_verilog_regincr_RegIncrNstage
   // connect the stages together.
   // '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-  genvar i;
-  generate
-  for ( i = 0; i < p_nstages; i = i + 1 ) begin: gen
-
-    tut3_verilog_regincr_RegIncr reg_incr
-    (
-      .clk   (clk),
-      .reset (reset),
-      .in_   (reg_incr_out[i]),
-      .out   (reg_incr_out[i+1])
-    );
-
-  end
-  endgenerate
+  // genvar i;
+  // generate
+  // for ( i = 0; i < p_nstages; i = i + 1 ) begin: gen
+  //
+  //   tut3_verilog_regincr_RegIncr reg_incr
+  //   (
+  //     .clk   (clk),
+  //     .reset (reset),
+  //     .in_   (reg_incr_out[i]),
+  //     .out   (reg_incr_out[i+1])
+  //   );
+  //
+  // end
+  // endgenerate
 
   // Connect the last signal in the reg_incr_out signal array to the
   // output port of the module.
