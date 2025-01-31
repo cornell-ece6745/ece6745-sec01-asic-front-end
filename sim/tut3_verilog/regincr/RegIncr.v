@@ -33,13 +33,13 @@ module tut3_verilog_regincr_RegIncr
   // block and connection statement to model the incrementer logic.
   // ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-  // logic [7:0] temp_wire;
-  //
-  // always @(*) begin
-  //   temp_wire = reg_out + 1;
-  // end
-  //
-  // assign out = temp_wire;
+  logic [7:0] temp_wire;
+
+  always @(*) begin
+    temp_wire = reg_out + 1;
+  end
+
+  assign out = temp_wire;
 
   `ifndef SYNTHESIS
 

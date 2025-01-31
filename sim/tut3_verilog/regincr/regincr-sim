@@ -36,12 +36,20 @@ model.elaborate()
 # Mark the top-level component for translation
 
 model.set_metadata( VerilogTranslationImportPass.enable, True )
+model.set_metadata( VerilogTranslationPass.explicit_module_name, "RegIncr4stage" )
 
-# Apply the default pass group
+# Apply pass groups
 
 model.apply( VerilogPlaceholderPass() )
 model = VerilogTranslationImportPass()( model )
-model.apply( DefaultPassGroup(textwave=True) )
+
+model.set_metadata( VerilogTBGenPass.case_name, "basic" )
+model.apply( VerilogTBGenPass() )
+
+model.apply( DefaultPassGroup(
+  vcdwave="RegIncr4stage",
+  textwave=True,
+))
 
 # Reset simulator
 
