@@ -20,9 +20,17 @@ while sim_dir:
 
 from tut3_verilog.regincr.RegIncrNstage import RegIncrNstage
 
+# Check for -s command line option
+
+inputs = sys.argv[1:]
+short_mname = False
+if sys.argv[1] == "-s":
+  inputs = sys.argv[2:]
+  short_mname = True
+
 # Get list of input values from command line
 
-input_values = [ int(x,0) for x in sys.argv[1:] ]
+input_values = [ int(x,0) for x in inputs ]
 
 # Add some zero values to end of list of input values
 
@@ -36,18 +44,24 @@ model.elaborate()
 # Mark the top-level component for translation
 
 model.set_metadata( VerilogTranslationImportPass.enable, True )
-model.set_metadata( VerilogTranslationPass.explicit_module_name, "RegIncr4stage" )
+
+if short_mname:
+  model.set_metadata( VerilogTranslationPass.explicit_module_name, "RegIncr4stage" )
 
 # Apply pass groups
 
 model.apply( VerilogPlaceholderPass() )
 model = VerilogTranslationImportPass()( model )
 
-model.set_metadata( VerilogTBGenPass.case_name, "basic" )
+if short_mname:
+  model.set_metadata( VerilogTBGenPass.case_name, "basic" )
+else:
+  model.set_metadata( VerilogTBGenPass.case_name, "regincr-sim-basic" )
+
 model.apply( VerilogTBGenPass() )
 
 model.apply( DefaultPassGroup(
-  vcdwave="RegIncr4stage",
+  vcdwave="regincr-sim-basic",
   textwave=True,
 ))
 

@@ -11,4 +11,3 @@ class RegIncrNstage( VerilogPlaceholder, Component ):
     s.in_ = InPort ( 8 )
     s.out = OutPort( 8 )
 
-
