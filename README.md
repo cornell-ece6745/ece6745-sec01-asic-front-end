@@ -1,5 +1,5 @@
 
-ECE 6745 Section 1: ASIC Flow Front-End
+ECE 6745 Section 1: ASIC Front-End Flow
 ==========================================================================
 
 This repository contains source code for ECE 6745 Section 1. The
